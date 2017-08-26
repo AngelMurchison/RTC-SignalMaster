@@ -33,6 +33,9 @@
               position: relative;
               display: none;
             }
+            #unmuteAll{
+              display: none;
+            }
         </style>
         <button id="screenShareButton"></button>
         <p id="subTitle"></p>
@@ -40,6 +43,8 @@
             <input id="sessionInput"/>
             <button type="submit">Create it!</button>
         </form>
+        <button id="muteAll">Mute All</button>
+        <button id="unmuteAll">Unmute All</button>
         <div class="videoContainer">
             <video id="localVideo" class="" style="height: 150px;" oncontextmenu="return false;"></video>
             <div id="localVolume" class="volume_bar"></div>
@@ -104,6 +109,8 @@
                     };
                     var localMute = document.getElementById('localMute')
                     var localUnmute = document.getElementById('localUnmute')
+                    var muteAll = document.getElementById('muteAll')
+                    var unmuteAll = document.getElementById('unmuteAll')
                     localMute.onclick = function (){
                       webrtc.mute()
                       localMute.style.display = 'none'
@@ -113,6 +120,23 @@
                       webrtc.unmute()
                       localUnmute.style.display = 'none'
                       localMute.style.display = 'inline-block'
+                    }
+                    muteAll.onclick =function(){
+                      let videos = document.querySelectorAll('video')
+                      console.log(videos)
+                      videos.forEach(function (v,i,a) {
+                        v.muted = true
+                      })
+                      muteAll.style.display = 'none'
+                      unmuteAll.style.display = 'inline-block'
+                    }
+                    unmuteAll.onclick = function(){
+                      let videos = document.querySelectorAll('video')
+                      videos.forEach(function(v,i,a) {
+                        v.muted = false
+                      })
+                      unmuteAll.style.display = 'none'
+                      muteAll.style.display = 'inline-block'
                     }
                     d.appendChild(vol);
                     remotes.appendChild(d);
