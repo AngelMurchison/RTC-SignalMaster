@@ -43,6 +43,7 @@
             <input id="sessionInput"/>
             <button type="submit">Create it!</button>
         </form>
+        <span>out of order</span>
         <button id="muteAll">Mute All</button>
         <button id="unmuteAll">Unmute All</button>
         <div class="videoContainer">
@@ -107,10 +108,12 @@
                         video.style.width = video.videoWidth + 'px';
                         video.style.height = video.videoHeight + 'px';
                     };
+
                     var localMute = document.getElementById('localMute')
                     var localUnmute = document.getElementById('localUnmute')
                     var muteAll = document.getElementById('muteAll')
                     var unmuteAll = document.getElementById('unmuteAll')
+
                     localMute.onclick = function (){
                       webrtc.mute()
                       localMute.style.display = 'none'
@@ -121,20 +124,23 @@
                       localUnmute.style.display = 'none'
                       localMute.style.display = 'inline-block'
                     }
+                    // Not currently working. Jason?
                     muteAll.onclick =function(){
-                      let videos = document.querySelectorAll('video')
-                      console.log(videos)
-                      videos.forEach(function (v) {
+                      document.querySelectorAll('video')
+                      .forEach(function (v) {
                         v.volume = 0
                       })
+
                       muteAll.style.display = 'none'
                       unmuteAll.style.display = 'inline-block'
                     }
+                    //
                     unmuteAll.onclick = function(){
-                      let videos = document.querySelectorAll('video')
-                      videos.forEach(function(v) {
+                      document.querySelectorAll('video')
+                      .forEach(function (v) {
                         v.volume = 0.25
                       })
+
                       unmuteAll.style.display = 'none'
                       muteAll.style.display = 'inline-block'
                     }
