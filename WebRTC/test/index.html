@@ -24,6 +24,15 @@
                 bottom: 0px;
                 background-color: #12acef;
             }
+            #localMute{
+              margin: 1em;
+              position:relative;
+            }
+            #localUnmute{
+              margin: 1em;
+              position: relative;
+              display: none;
+            }
         </style>
         <button id="screenShareButton"></button>
         <p id="subTitle"></p>
@@ -32,9 +41,11 @@
             <button type="submit">Create it!</button>
         </form>
         <div class="videoContainer">
-            <video id="localVideo" style="height: 150px;" oncontextmenu="return false;"></video>
+            <video id="localVideo" class="" style="height: 150px;" oncontextmenu="return false;"></video>
             <div id="localVolume" class="volume_bar"></div>
         </div>
+        <button id="localMute">Mute Microphone</button>
+        <button id="localUnmute" style="display: hidden">Unmute Microphone</button>
         <div id="remotes"></div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
         <script src="../out/simplewebrtc-with-adapter.bundle.js"></script>
@@ -83,6 +94,7 @@
                     d.className = 'videoContainer';
                     d.id = 'container_' + webrtc.getDomId(peer);
                     d.appendChild(video);
+
                     var vol = document.createElement('div');
                     vol.id = 'volume_' + peer.id;
                     vol.className = 'volume_bar';
@@ -90,6 +102,18 @@
                         video.style.width = video.videoWidth + 'px';
                         video.style.height = video.videoHeight + 'px';
                     };
+                    var localMute = document.getElementById('localMute')
+                    var localUnmute = document.getElementById('localUnmute')
+                    localMute.onclick = function (){
+                      webrtc.mute()
+                      localMute.style.display = 'none'
+                      localUnmute.style.display = 'inline-block'
+                    }
+                    localUnmute.onclick = function (){
+                      webrtc.unmute()
+                      localUnmute.style.display = 'none'
+                      localMute.style.display = 'inline-block'
+                    }
                     d.appendChild(vol);
                     remotes.appendChild(d);
                 }

@@ -18,7 +18,7 @@ function SimpleWebRTC(opts) {
             enableDataChannels: true,
             autoRequestMedia: false,
             autoRemoveVideos: true,
-            adjustPeerVolume: false,
+            adjustPeerVolume: true,
             peerVolumeWhenSpeaking: 0.25,
             media: {
                 video: true,
