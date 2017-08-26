@@ -3,5 +3,5 @@
  Start with "npm start".
 
 ### WebRTC
- The environment that our chatrooms will exist in. The user will connect to this service, which will make a call to signalmaster, opening a connection on the central server, and then wait for anyone to try to connect to that. If that all goes well, a peer-to-peer connection will be established.
+ The environment that our video chatrooms will exist in. The user will connect to this service, which will make a call to SignalMaster, finally opening a connection on the central server pointing to your device. Anyone else can then ping SignalMaster to create for them a direct line to your device. A peer-to-peer video stream will be established.
  Start with "npm run test-page"
