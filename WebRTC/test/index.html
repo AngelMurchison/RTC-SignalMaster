@@ -124,16 +124,16 @@
                     muteAll.onclick =function(){
                       let videos = document.querySelectorAll('video')
                       console.log(videos)
-                      videos.forEach(function (v,i,a) {
-                        v.muted = true
+                      videos.forEach(function (v) {
+                        v.volume = 0
                       })
                       muteAll.style.display = 'none'
                       unmuteAll.style.display = 'inline-block'
                     }
                     unmuteAll.onclick = function(){
                       let videos = document.querySelectorAll('video')
-                      videos.forEach(function(v,i,a) {
-                        v.muted = false
+                      videos.forEach(function(v) {
+                        v.volume = 0.25
                       })
                       unmuteAll.style.display = 'none'
                       muteAll.style.display = 'inline-block'
